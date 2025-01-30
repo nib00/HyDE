@@ -1,0 +1,8 @@
+#!/bin/sh
+
+function PkgInstalled {
+	CheckOS
+	printf "OS: %s\n" "${__OS__}"
+	printf "CloneDir: %s\n" "${CloneDir}"
+	printf "ConfDir: %s\n" "${ConfDir}"
+}

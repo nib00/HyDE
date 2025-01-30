@@ -1,9 +1,19 @@
 #!/bin/sh
 
-sourceDir="$(dirname "$(realpath "$0")")"
-cloneDir="$(dirname "$sourceDir")"
-cloneDir="${CLONE_DIR:-${cloneDir}}"
+SourceDir="$(dirname "$(realpath "$0")")"
+CloneDir="$(dirname "${SourceDir}")"
+CloneDir="${CLONE_DIR:-${CloneDir}}"
 
-confDir
-echo "${cloneDir}"
+#hyde -> hype, cuz hype is funny
+ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}/hype"
+
+# kornshell is best, adding others for normies
+# (nix also for nomries), btw
+# defer shlList = ("zsh" "fish") export to main script, make kornshell main
+
+export CloneDir
+export ConfDir
+export CacheDir
+
+
 
