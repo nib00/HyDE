@@ -47,7 +47,7 @@ else
 fi
 
 # dolphin
-if pkg_installed dolphin && pkg_installed xdg-utils; then
+if pkg_installed kde-apps/dolphin && pkg_installed x11-misc/xdg-utils; then
     print_log -c "[FILEMANAGER] " -b "detected :: " "dolphin"
     xdg-mime default org.kde.dolphin.desktop inode/directory
     print_log -g "[FILEMANAGER] " -b " :: " "setting $(xdg-mime query default "inode/directory") as default file explorer..."
@@ -61,7 +61,7 @@ fi
 "${scrDir}/restore_shl.sh"
 
 # flatpak
-if ! pkg_installed flatpak; then
+if ! pkg_installed sys-apps/flatpak; then
     print_log -r "[FLATPAK]" -b "list :: " "flatpak application"
     awk -F '#' '$1 != "" {print "["++count"]", $1}' "${scrDir}/extra/custom_flat.lst"
     prompt_timer 60 "Install these flatpaks? [Y/n]"

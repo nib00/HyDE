@@ -11,13 +11,13 @@ cloneDir="$(dirname "${scrDir}")" # fallback, we will use CLONE_DIR now
 cloneDir="${CLONE_DIR:-${cloneDir}}"
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 cacheDir="${XDG_CACHE_HOME:-$HOME/.cache}/hyde"
-aurList=("yay" "paru")
-shlList=("zsh" "fish")
+#aurList=("yay" "paru")
+shlList=("zsh" "mksh")
 
 export cloneDir
 export confDir
 export cacheDir
-export aurList
+#export aurList
 export shlList
 
 pkg_installed() {
@@ -49,7 +49,7 @@ pkg_available() {
     local PkgIn=$1
 
     if pacman -Si "${PkgIn}" &>/dev/null; then
-        return 0
+       return 0
     else
         return 1
     fi
