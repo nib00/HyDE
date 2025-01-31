@@ -2,7 +2,40 @@
 
 function PkgInstalled {
 	CheckOS
-	printf "OS: %s\n" "${__OS__}"
-	printf "CloneDir: %s\n" "${CloneDir}"
-	printf "ConfDir: %s\n" "${ConfDir}"
+	if [[ "${__OS__}" = "calculate" ]]
+	then
+		#printf "OS: calculate\n"
+		#printf "Checking if %s Package is installed..." "$1"
+		if emerge -p "$1" &>/dev/null;
+		then
+			return 0
+		else
+			return 1
+		fi
+	fi
+}
+
+# using the  package manager is slow on gentoo
+# i.e emerge -p 
+function PkgInstalledV2 {
+	CheckOS
+	returnVal=""
+	if [[ "${__OS__}" = "calculate" ]] || [[ "${__OS__}" = "gentoo" ]]
+	then
+		for cata in /var/db/pkg/*;
+		do 
+			for pkg in ${cata}/*;
+			do 
+				pkg=$(basename "$pkg");
+				#printf "%s*\n" "${1}"
+				#printf "package: %s\n" "${pkg}";
+				if [[ "$pkg" = "$1"* ]]; then
+					#printf "Found Package: %s !\n" "$1"
+					returnVal="0";
+				fi
+			done;
+		done;
+		returnVal="1";
+	fi
+	printf "$returnVal";
 }
