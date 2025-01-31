@@ -1,5 +1,4 @@
 #/bin/sh
-
 __Dir__="$(dirname "$(realpath "$0")")"
 # these NEED to be, maybe set them with a Makefile?
 # keep in mind, this is an install script
@@ -18,6 +17,16 @@ do
 	. "$file"
 done;
 
-CheckOS
-printf "%s$" "${__OS__}"
-
+#if ! PkgInstalled bat; then
+#	printf "Success!\n"
+#else
+#	printf "Failure!\n"
+#fi
+#val="$(PkgInstalledV2 battotakjljlkj)"
+#printf "val is: %d\n" "$val"
+#if ! [[ $val ]]; then
+#	printf "Success!\n"
+#else
+#	printf "Failure!\n"
+#fi
+CheckList 1 2 3 4 5 6

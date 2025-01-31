@@ -1,0 +1,17 @@
+#!/bin/sh
+
+function CheckList {
+	#printf "%s\n" 
+	vrType="$1"
+	local inList=("${@:2}")
+	for pkg in "${inList[@]}"; do 
+		if PkgInstalledV2 "${pkg}"; then
+			printf -v "{vrType}" "%s" "${pkg}"
+			# shellcheck disable=SC2163 
+			export "${vrType}"
+			return 0
+		fi
+	done
+	return 1;
+}
+

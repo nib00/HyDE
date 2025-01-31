@@ -1,0 +1,24 @@
+#!/bin/sh
+
+function NvidiaDetect {
+	dGPU="$(lspci -k | grep -E '(VGA|3D)')"
+	dGPU=${dGPU##*:}
+#	readarray -t dGPU < <(lspci -k | grep -E "(VGA|3D)" | awk -F ': ' '{print $NF}')
+	#if [ "$1" == "--verbose" ]; then
+	#	printf "\033[0;32m[gpu]\033[0m detected : %s\n" "${dGPU}";
+	#	return 0; #return 0
+	#fi
+	
+	if [ "$1" == "--drivers" ]; then
+		# stupid awk command in awhile loop. 
+		# please figure out away to change it
+
+
+	fi
+	#if grep -iq nvidia <<< "$dGPU"; then
+	#	return 0
+	#else
+	#	return 1
+	#fi
+}
+NvidiaDetect --drivers
