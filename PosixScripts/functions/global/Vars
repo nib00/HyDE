@@ -5,7 +5,8 @@ CloneDir="$(dirname "${SourceDir}")"
 CloneDir="${CLONE_DIR:-${CloneDir}}"
 
 #hyde -> hype, cuz hype is funny
-ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}/hype"
+ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+CacheDir="${XDG_CONFIG_HOME:-$HOME/.config}/hype"
 
 # kornshell is best, adding others for normies
 # (nix also for nomries), btw

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+var=0
+{
+	printf "hello\n"
+
+} | if [[ -n $var ]]; then
+	#printf "it not empty var\n"
+	tee >(sed 's/\x1b\[[0-9;]*m//g' >>t.txt)
+else
+	cat
+fi
