@@ -38,7 +38,7 @@ if pkg_installed zsh; then
     fi
 
     #? Optional: oh-my-zsh
-    if pkg_installed oh-my-zsh-git || [[ -f "${HOME}/.oh-my-zsh/oh-my-zsh.sh" ]]; then
+    if pkg_installed app-shells/ohmyzsh || [[ -f "${HOME}/.oh-my-zsh/oh-my-zsh.sh" ]]; then
         zsh_paths=(
             "$HOME/.oh-my-zsh"
             "/usr/local/share/oh-my-zsh"

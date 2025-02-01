@@ -1,0 +1,6 @@
+#!/bin/sh
+
+function CheckOS {
+	__Banner__="$(uname -r)"
+	__OS__="${__Banner__##*-}"
+}

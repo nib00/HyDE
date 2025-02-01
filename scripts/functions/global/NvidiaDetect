@@ -1,0 +1,21 @@
+#!/bin/sh
+
+function NvidiaDetect {
+	dGPU="$(lspci -k | grep -E '(VGA|3D)')"
+	dGPU=${dGPU##*:}
+	if [ "$1" == "--verbose" ]; then
+		printf "\033[0;32m[gpu]\033[0m detected : ${dGPU}\n";
+		return 0; 
+	fi
+	if [ "$1" == "--drivers" ]; then
+		while read -r -d ' ' nvcode; do
+			awk -F '|' -v nvc="${nvcode}" 'substr(nvc,1,length($3)) == $3 {split(FILENAME,driver,"/"); print driver[length(driver)],"\nnvidia-utils"}' "${__Dir__}"/nvidia-db/nvidia*dkms
+		done <<<"${dGPU[@]}"
+        	return 0
+    	fi
+	if grep -iq nvidia <<<"${dGPU[@]}"; then
+		return 0
+	else
+		return 1
+	fi
+}

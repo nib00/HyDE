@@ -1,0 +1,17 @@
+#!/bin/sh
+
+function PromptTimer {
+	set +e
+	unset PROMPT_INPUT
+	timesec=$1
+	msg=$2
+	while [[ ${timesec} -ge 0 ]]; do 
+		printf "\r :: ${msg} (${timesec}s) : "
+		read -rt 1 -n 1 PROMPT_INPUT && break
+		((timesec--))
+	done
+	export PROMPT_INPUT
+	printf "\n"
+	set -e
+}
+#PromptTimer 4 "Hello, Prompt"

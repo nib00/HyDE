@@ -1,0 +1,82 @@
+#!/bin/sh
+
+function PrintLog {
+	#executable="${0##*/}"
+	#logFile="${cacheDir}/logs/${HYDE_LOG}/${executable}"
+	#mkdir -p "$(dirname "${logFile}")"
+	#section=${log_section:-}
+    {
+        [ -n "${section}" ] && printf "\e[32m[$section] \e[0m"
+        while (("$#")); do
+            case "$1" in
+            -r | +r)
+                printf "\e[31m$2\e[0m"
+                shift 2
+                ;; # Red
+            -g | +g)
+                printf "\e[32m$2\e[0m"
+                shift 2
+                ;; # Green
+            -y | +y)
+                printf "\e[33m$2\e[0m"
+                shift 2
+                ;; # Yellow
+            -b | +b)
+                printf "\e[34m$2\e[0m"
+                shift 2
+                ;; # Blue
+            -m | +m)
+                printf "\e[35m$2\e[0m"
+                shift 2
+                ;; # Magenta
+            -c | +c)
+                printf "\e[36m$2\e[0m"
+                shift 2
+                ;; # Cyan
+            -wt | +w)
+                printf "\e[37m$2\e[0m"
+                shift 2
+                ;; # White
+            -n | +n)
+                printf "\e[96m$2\e[0m"
+                shift 2
+                ;; # Neon
+            -stat)
+                printf "\e[30;46m $2 \e[0m :: "
+                shift 2
+                ;; # status
+            -crit)
+                printf "\e[97;41m $2 \e[0m :: "
+                shift 2
+                ;; # critical
+            -warn)
+                printf "WARNING :: \e[97;43m $2 \e[0m :: "
+                shift 2
+                ;; # warning
+            +)
+                printf "\e[38;5;$2m$3\e[0m"
+                shift 3
+                ;; # Set color manually
+            -sec)
+                printf "\e[32m[$2] \e[0m"
+                shift 2
+                ;; # section use for logs
+            -err)
+                printf "ERROR :: \e[4;31m$2 \e[0m"
+                shift 2
+                ;; #error
+            *)
+                printf "$1"
+                shift
+                ;;
+            esac
+        done
+        echo ""
+    } | if [ -n "${HYDE_LOG}" ]; then
+        tee >(sed 's/\x1b\[[0-9;]*m//g' >>"logFile.txt")
+        #tee >(sed 's/\x1b\[[0-9;]*m//g' >>"${logFile}")
+    else
+        cat
+    fi
+}
+PrintLog 1
