@@ -87,10 +87,21 @@ if [ "${flg_DryRun}" -eq 1 ]; then
 	print_log -n "[test-run] " -b "enabled :: " "Testing without executing"
 
 elif [ $OPTIND -eq 1 ]; then
+	printf "in here!!!\n"
 	flg_Install=1
 	flg_Restore=1
 	flg_Service=1
 fi
+
+#############################
+#	pre-install phase   #
+#############################
+
+if [ ${flg_Install} -eq 1 ] && [ ${flg_Restore} -eq 1 ]; then
+	printf "pre -install script here \n"
+fi
+
+
 
 #if ! PkgInstalled bat; then
 #	printf "Success!\n"
