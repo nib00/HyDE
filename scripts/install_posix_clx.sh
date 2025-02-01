@@ -80,6 +80,18 @@ while getopts idrstmnh: RunStep; do
 	esac
 done
 
+HYDE_LOG="$(date +'%y%m%d_%Hh%Mm%Ss')"
+export flg_DryRun flg_Nvidia flg_Shell flg_Install \
+	ThemeInstall HYDE_LOG
+if [ "${flg_DryRun}" -eq 1 ]; then
+	print_log -n "[test-run] " -b "enabled :: " "Testing without executing"
+
+elif [ $OPTIND -eq 1 ]; then
+	flg_Install=1
+	flg_Restore=1
+	flg_Service=1
+fi
+
 #if ! PkgInstalled bat; then
 #	printf "Success!\n"
 #else
