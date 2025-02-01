@@ -5,5 +5,5 @@ function CommunityAvailable {
 	# like aur_available
 	# should check if pkg is 
 	# in community repos/overlays etc
-
+	echo ""
 }

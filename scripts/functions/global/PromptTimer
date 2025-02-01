@@ -14,4 +14,4 @@ function PromptTimer {
 	printf "\n"
 	set -e
 }
-PromptTimer 4 "Hello, Prompt"
+#PromptTimer 4 "Hello, Prompt"
