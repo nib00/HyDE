@@ -28,10 +28,10 @@ function PkgInstalledV2 {
 			for pkg in ${cata}/*;
 			do 
 				pkg=$(basename "$pkg");
-				printf "%s*\n" "${1}"
-				printf "package: %s\n" "${pkg}";
+				#printf "%s*\n" "${1}"
+				#printf "package: %s\n" "${pkg}";
 				if [[ "$pkg" = "$1"* ]]; then
-					printf "Found Package: %s !\n" "$1"
+					printf "Found Package: %s !\n" "$pkg"
 					returnVal="0";
 				fi
 			done;

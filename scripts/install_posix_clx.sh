@@ -101,6 +101,8 @@ if [ ${flg_Install} -eq 1 ] && [ ${flg_Restore} -eq 1 ]; then
 	printf "pre -install script here \n"
 fi
 
+PkgInstalledV2 grub
+
 
 
 #if ! PkgInstalled bat; then
